@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { loadEnv } from 'vite'
 
@@ -9,8 +9,10 @@ const configuredSiteUrl = env.VITE_SITE_URL?.trim()
 const distDirectory = path.join(root, 'dist')
 const robotsPath = path.join(distDirectory, 'robots.txt')
 const sitemapPath = path.join(distDirectory, 'sitemap.xml')
+const indexPath = path.join(distDirectory, 'index.html')
 
 await mkdir(distDirectory, { recursive: true })
+await copyFile(indexPath, path.join(distDirectory, '404.html'))
 const existingRobots = await readFile(robotsPath, 'utf8')
 const robotsWithoutSitemap = existingRobots.split(/\r?\n/).filter((line) => !/^sitemap:/i.test(line)).join('\n').trimEnd()
 

@@ -4,7 +4,7 @@
 
 > **Projekt ansehen:** [github.com/AnnaFillanna/velora-beauty](https://github.com/AnnaFillanna/velora-beauty)
 >
-> Das Repository enthält den Quellcode und die Projektdokumentation. Eine separat veröffentlichte Live-Demo ist derzeit nicht konfiguriert.
+> **Live-Demo:** [annafillanna.github.io/velora-beauty](https://annafillanna.github.io/velora-beauty/)
 
 VELORA verbindet ein ruhiges, editorial geprägtes Markenerlebnis mit funktionierenden Demo-Interaktionen. Das Projekt demonstriert Konzeption und Umsetzung einer responsiven Beauty-Website – von Treatments und Preisen bis zur Buchungsstrecke und einem kleinen Produktkatalog.
 
@@ -67,18 +67,19 @@ npm run preview
 
 ## Deployment-URL für SEO konfigurieren
 
-Canonical-Links und Sitemap benötigen die tatsächliche öffentliche HTTPS-Adresse. Es ist bewusst keine Domain vorgegeben oder erfunden.
+Canonical-Links und Sitemap verwenden die öffentliche Deployment-Adresse.
 
-1. `.env.example` als Vorlage verwenden.
-2. Eine `.env`-Datei anlegen und `VITE_SITE_URL` auf den öffentlichen Origin setzen, zum Beispiel:
+Die GitHub-Pages-Veröffentlichung wird bei jedem Push auf `main` über GitHub Actions gebaut und bereitgestellt. Für eine lokale Auslieferung unter dem gleichen Projektpfad:
 
-   ```env
-   VITE_SITE_URL=https://deine-echte-domain.de
-   ```
+```bash
+VITE_SITE_URL=https://annafillanna.github.io/velora-beauty \
+VITE_BASE_PATH=/velora-beauty/ \
+npm run build
+```
 
-3. Danach `npm run build` erneut ausführen.
+Für eine eigene Domain müssen `VITE_SITE_URL` und `VITE_BASE_PATH` im GitHub-Actions-Workflow entsprechend angepasst werden.
 
-Ohne diese Konfiguration wird absichtlich keine Sitemap mit einer falschen Domain erzeugt. `robots.txt` erlaubt das Crawling; der Generator ergänzt den Sitemap-Verweis erst mit einer gültigen URL.
+Ohne `VITE_SITE_URL` wird absichtlich keine Sitemap mit einer falschen Domain erzeugt. `robots.txt` erlaubt das Crawling; der Generator ergänzt den Sitemap-Verweis erst mit einer gültigen URL.
 
 ## Bildmaterial
 
