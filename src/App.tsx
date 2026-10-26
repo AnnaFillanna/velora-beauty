@@ -140,10 +140,10 @@ function CinematicHero() {
   return <section ref={heroRef} className="hero">
     <motion.div className="hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.12, ease: [0.22, 1, 0.36, 1] }}>
       <p className="eyebrow hero-eyebrow"><span /> BEAUTY HOUSE · KÖLN</p>
-      <h1><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.85, delay: reducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}>Deine Schönheit.</motion.span></span><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.9, delay: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}><em>Unser Anspruch.</em></motion.span></span></h1>
-      <p className="hero-description">Exklusive Beauty Treatments, moderne Pflege und persönliche Wohlfühlmomente im Herzen von Köln.</p>
+      <h1><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.85, delay: reducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}>Dein Look.</motion.span></span><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.9, delay: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}><em>Dein Rhythmus.</em></motion.span></span></h1>
+      <p className="hero-description">Lashes, Brows, Nails und Skin. Wähle dein Treatment – wir stimmen Form, Farbe und Pflege auf dich ab.</p>
       <div className="hero-actions"><Link to="/book" className="button button-dark">Termin buchen </Link><Link to="/treatments" className="text-link">Treatments entdecken </Link></div>
-      <div className="hero-note"><span className="note-line" />Ein Ort für dich. Für alles, was dich ausmacht.</div>
+      <ul className="hero-specialties" aria-label="Unsere Beauty-Bereiche"><li>Lashes &amp; Brows</li><li>Nails</li><li>Skin &amp; Care</li></ul><div className="hero-note">In Köln. In deinem Tempo.</div>
     </motion.div>
     <motion.div className="hero-art-wrap" style={{ scale: sceneScale, y: sceneY }} onPointerMove={moveWithPointer} onPointerLeave={resetPointer}>
       <motion.div className="hero-art-depth" style={{ x: pointerX, y: pointerY }}>
