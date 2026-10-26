@@ -202,7 +202,7 @@ function PageHero({ eyebrow, title, description, visual = 'inner-art', asset }: 
 }
 
 function TreatmentsPage() {
-  return <main><PageHero eyebrow="DIE VELORA BEAUTY WELT" title={<>Treatments,<br /><em>die zu dir passen.</em></>} description="Entdecke unsere Behandlungen für deinen persönlichen Beauty-Moment. Wir beraten dich gerne individuell." visual="treatments-art" /><section className="inner-section section-pad"><SectionHeading eyebrow="FINDE DEIN RITUAL" title={<>Schönheit in<br /><em>deiner Zeit.</em></>} text="Wähle den Bereich, der dich anspricht – gemeinsam finden wir heraus, was zu dir passt." /><TreatmentGrid /></section><TreatmentPriceList /><BookingStrip /></main>
+  return <main><PageHero eyebrow="DIE VELORA BEAUTY WELT" title={<>Treatments,<br /><em>die zu dir passen.</em></>} description="Entdecke unsere Behandlungen für deinen persönlichen Beauty-Moment. Wir beraten dich gerne individuell." visual="treatments-art" asset="treatments" /><section className="inner-section section-pad"><SectionHeading eyebrow="FINDE DEIN RITUAL" title={<>Schönheit in<br /><em>deiner Zeit.</em></>} text="Wähle den Bereich, der dich anspricht – gemeinsam finden wir heraus, was zu dir passt." /><TreatmentGrid /></section><TreatmentPriceList /><BookingStrip /></main>
 }
 
 function TreatmentPriceList() {
