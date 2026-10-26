@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Clock3, Menu, Minus, Plus, X } from 'lucide-react'
+import { Clock3, Menu, Minus, Plus, X } from 'lucide-react'
 import { getEditorialImage, type EditorialImage } from './data/visualAssets'
 import { beautyExperts } from './data/booking'
 import { pricedTreatments, treatmentCategories, type TreatmentCategoryId } from './data/treatments'
@@ -80,23 +80,23 @@ function Header() {
       <nav className="desktop-nav" aria-label="Hauptnavigation">
         <div className="nav-dropdown">
           <NavLink to="/treatments" className={({ isActive }) => isActive ? 'active' : ''}>Treatments</NavLink>
-          <div className="dropdown-panel">{navGroups.map(item => <Link key={item.path} to={item.path}>{item.title}<ArrowUpRight size={14} /></Link>)}</div>
+          <div className="dropdown-panel">{navGroups.map(item => <Link key={item.path} to={item.path}>{item.title}</Link>)}</div>
         </div>
         <NavLink to="/collection">Skin Collection</NavLink>
         <NavLink to="/about">Über uns</NavLink>
         <NavLink to="/contact">Kontakt</NavLink>
       </nav>
       <CartButton />
-      <Link to="/book" className="button button-dark header-book">Termin buchen <ArrowUpRight size={15} /></Link>
+      <Link to="/book" className="button button-dark header-book">Termin buchen </Link>
       <button ref={mobileToggleRef} className="mobile-toggle" aria-label={open ? 'Menü schließen' : 'Menü öffnen'} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
     </div>
     <AnimatePresence>
       {open && <motion.nav ref={mobileNavigationRef} id="mobile-navigation" className="mobile-nav" aria-label="Mobile Navigation" aria-hidden={!open} initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: 'easeInOut' }}>
-        <Link to="/treatments">Treatments <ArrowRight size={16} /></Link>
-        <Link to="/collection">Skin Collection <ArrowRight size={16} /></Link>
-        <Link to="/about">Über uns <ArrowRight size={16} /></Link>
-        <Link to="/contact">Kontakt <ArrowRight size={16} /></Link>
-        <Link to="/book" className="button button-dark mobile-book">Termin buchen <ArrowUpRight size={15} /></Link>
+        <Link to="/treatments">Treatments </Link>
+        <Link to="/collection">Skin Collection </Link>
+        <Link to="/about">Über uns </Link>
+        <Link to="/contact">Kontakt </Link>
+        <Link to="/book" className="button button-dark mobile-book">Termin buchen </Link>
       </motion.nav>}
     </AnimatePresence>
   </header>
@@ -142,7 +142,7 @@ function CinematicHero() {
       <p className="eyebrow hero-eyebrow"><span /> BEAUTY HOUSE · KÖLN</p>
       <h1><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.85, delay: reducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}>Deine Schönheit.</motion.span></span><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.9, delay: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}><em>Unser Anspruch.</em></motion.span></span></h1>
       <p className="hero-description">Exklusive Beauty Treatments, moderne Pflege und persönliche Wohlfühlmomente im Herzen von Köln.</p>
-      <div className="hero-actions"><Link to="/book" className="button button-dark">Termin buchen <ArrowUpRight size={16} /></Link><Link to="/treatments" className="text-link">Treatments entdecken <ArrowRight size={16} /></Link></div>
+      <div className="hero-actions"><Link to="/book" className="button button-dark">Termin buchen </Link><Link to="/treatments" className="text-link">Treatments entdecken </Link></div>
       <div className="hero-note"><span className="note-line" />Ein Ort für dich. Für alles, was dich ausmacht.</div>
     </motion.div>
     <motion.div className="hero-art-wrap" style={{ scale: sceneScale, y: sceneY }} onPointerMove={moveWithPointer} onPointerLeave={resetPointer}>
@@ -152,7 +152,7 @@ function CinematicHero() {
         <div className="hero-side-note">DEIN BEAUTY MOMENT — 01</div>
       </motion.div>
     </motion.div>
-    <a href="#intro" className="scroll-cue" aria-label="Weiter zum Inhalt"><span>Scrollen</span><ArrowDown size={15} /></a>
+    <a href="#intro" className="scroll-cue" aria-label="Weiter zum Inhalt"><span>Scrollen</span></a>
   </section>
 }
 
@@ -165,7 +165,7 @@ function TreatmentGrid({ compact = false }: { compact?: boolean }) {
   return <div className="treatment-grid">{list.map((item, index) => <Reveal key={item.path} className={`treatment-card card-${index + 1}`} delay={index * 0.07}>
     <Link to={item.path} className="treatment-link">
       <Visual variant={item.visual} asset={item.image} label={`${item.title} – abstrakte Bildfläche`} />
-      <div className="treatment-meta"><span className="eyebrow">{item.index} / {item.subtitle}</span><ArrowUpRight size={19} strokeWidth={1.4} /></div>
+      <div className="treatment-meta"><span className="eyebrow">{item.index} / {item.subtitle}</span></div>
       <h3>{item.title}</h3>
     </Link>
   </Reveal>)}</div>
@@ -178,7 +178,7 @@ function ProductRow() {
 function ProductCard({ product, index }: { product: typeof skinProducts[number]; index: number }) {
   return <Link className="skin-product-card" to={`/collection/${product.id}`}>
     <div className="skin-product-card-art"><ProductArtwork product={product} /><span className="product-number">0{index + 1}</span></div>
-    <div className="skin-product-card-copy"><p className="eyebrow">{product.collection} · {product.volume}</p><h3>{product.name}</h3><div><span>{formatSkinPrice(product.priceEuro)} <small>Demo-Preis</small></span><span className="skin-product-discover">Produkt entdecken <ArrowUpRight size={15} /></span></div></div>
+    <div className="skin-product-card-copy"><p className="eyebrow">{product.collection} · {product.volume}</p><h3>{product.name}</h3><div><span>{formatSkinPrice(product.priceEuro)} <small>Demo-Preis</small></span><span className="skin-product-discover">Produkt entdecken </span></div></div>
   </Link>
 }
 
@@ -187,15 +187,15 @@ function Home() {
     <main>
       <CinematicHero />
 
-      <section className="intro-section section-pad" id="intro"><Reveal className="intro-index"><span>01</span><span className="index-rule" />EIN GEFÜHL, DAS BLEIBT</Reveal><Reveal className="intro-content"><p className="eyebrow">WILLKOMMEN BEI VELORA</p><h2>Schönheit ist<br /><em>persönlich.</em></h2></Reveal><Reveal className="intro-copy"><p>Bei VELORA beginnt jedes Treatment mit einem offenen Ohr. Wir glauben an individuelle Beratung, ein gutes Gefühl und Ästhetik, die zu dir passt.</p><p>In unserem Beauty House in Köln findest du Raum für moderne Treatments und kleine Rituale, die ganz dir gehören.</p><Link className="text-link" to="/about">VELORA kennenlernen <ArrowRight size={16} /></Link></Reveal></section>
+      <section className="intro-section section-pad" id="intro"><Reveal className="intro-index"><span>01</span><span className="index-rule" />EIN GEFÜHL, DAS BLEIBT</Reveal><Reveal className="intro-content"><p className="eyebrow">WILLKOMMEN BEI VELORA</p><h2>Schönheit ist<br /><em>persönlich.</em></h2></Reveal><Reveal className="intro-copy"><p>Bei VELORA beginnt jedes Treatment mit einem offenen Ohr. Wir glauben an individuelle Beratung, ein gutes Gefühl und Ästhetik, die zu dir passt.</p><p>In unserem Beauty House in Köln findest du Raum für moderne Treatments und kleine Rituale, die ganz dir gehören.</p><Link className="text-link" to="/about">VELORA kennenlernen </Link></Reveal></section>
 
-      <section className="treatments-section section-pad"><Reveal><SectionHeading eyebrow="UNSERE TREATMENTS · 02" title={<>Zeit für das,<br /><em>was dir guttut.</em></>} text="Entdecke unsere Beauty-Welt – sorgfältig zusammengestellt und auf dich abgestimmt." /></Reveal><TreatmentGrid compact /><div className="center-action"><Link to="/treatments" className="button button-outline">Alle Treatments entdecken <ArrowRight size={16} /></Link></div></section>
+      <section className="treatments-section section-pad"><Reveal><SectionHeading eyebrow="UNSERE TREATMENTS · 02" title={<>Zeit für das,<br /><em>was dir guttut.</em></>} text="Entdecke unsere Beauty-Welt – sorgfältig zusammengestellt und auf dich abgestimmt." /></Reveal><TreatmentGrid compact /><div className="center-action"><Link to="/treatments" className="button button-outline">Alle Treatments entdecken </Link></div></section>
 
-      <section className="experience-section"><Visual variant="experience-art" label="Abstrakte, warme Bildkomposition als Platzhalter" /><Reveal className="experience-copy"><p className="eyebrow">DAS VELORA GEFÜHL · 03</p><h2>Mehr als ein<br /><em>Termin.</em></h2><p>Ein Besuch bei uns ist eine Einladung, kurz innezuhalten. Mit Ruhe, aufmerksamer Betreuung und einem Blick für die Details gestalten wir dein persönliches Beauty-Ritual.</p><Link to="/about" className="text-link">Unser Anspruch <ArrowRight size={16} /></Link></Reveal><span className="experience-vertical">BEAUTY IN EVERY DETAIL.</span></section>
+      <section className="experience-section"><Visual variant="experience-art" label="Abstrakte, warme Bildkomposition als Platzhalter" /><Reveal className="experience-copy"><p className="eyebrow">DAS VELORA GEFÜHL · 03</p><h2>Mehr als ein<br /><em>Termin.</em></h2><p>Ein Besuch bei uns ist eine Einladung, kurz innezuhalten. Mit Ruhe, aufmerksamer Betreuung und einem Blick für die Details gestalten wir dein persönliches Beauty-Ritual.</p><Link to="/about" className="text-link">Unser Anspruch </Link></Reveal><span className="experience-vertical">BEAUTY IN EVERY DETAIL.</span></section>
 
-      <section className="collection-section section-pad"><div className="collection-header"><Reveal><p className="eyebrow">VELORA SKIN COLLECTION · 04</p><h2>Pflege, <em>die bleibt.</em></h2></Reveal><Reveal><p className="collection-copy">Eine kuratierte Welt aus Pflege-Essentials – mit Liebe zu Form, Textur und den kleinen Momenten deiner Routine.</p><Link to="/collection" className="text-link">Kollektion entdecken <ArrowRight size={16} /></Link></Reveal></div><ProductRow /><div className="collection-demo-note">Fiktive Produktwelt · Demo-Preise · Keine echten Bestellungen</div></section>
+      <section className="collection-section section-pad"><div className="collection-header"><Reveal><p className="eyebrow">VELORA SKIN COLLECTION · 04</p><h2>Pflege, <em>die bleibt.</em></h2></Reveal><Reveal><p className="collection-copy">Eine kuratierte Welt aus Pflege-Essentials – mit Liebe zu Form, Textur und den kleinen Momenten deiner Routine.</p><Link to="/collection" className="text-link">Kollektion entdecken </Link></Reveal></div><ProductRow /><div className="collection-demo-note">Fiktive Produktwelt · Demo-Preise · Keine echten Bestellungen</div></section>
 
-      <section className="book-cta"><div className="cta-ornament">V</div><Reveal><p className="eyebrow">EIN MOMENT NUR FÜR DICH</p><h2>Dein Moment.<br /><em>Deine Schönheit.</em></h2><Link to="/book" className="button button-light">Jetzt Termin entdecken <ArrowUpRight size={16} /></Link></Reveal><span className="cta-foot">VELORA · BEAUTY HOUSE KÖLN</span></section>
+      <section className="book-cta"><div className="cta-ornament">V</div><Reveal><p className="eyebrow">EIN MOMENT NUR FÜR DICH</p><h2>Dein Moment.<br /><em>Deine Schönheit.</em></h2><Link to="/book" className="button button-light">Jetzt Termin entdecken </Link></Reveal><span className="cta-foot">VELORA · BEAUTY HOUSE KÖLN</span></section>
     </main>
   </>
 }
@@ -240,7 +240,7 @@ function TreatmentPriceList() {
             <div className="price-treatment"><h3>{treatment.name}</h3><p>{treatment.description}</p></div>
             <span className="price-duration"><Clock3 size={14} aria-hidden="true" />{treatment.durationMinutes} Min.</span>
             <span className="price-amount">{formatPrice(treatment.priceEuro)} <small>Demo</small></span>
-            <Link className="price-book" to={`/book?service=${encodeURIComponent(treatment.id)}`} aria-label={`${treatment.name} für ${formatPrice(treatment.priceEuro)} als Wunschtermin auswählen`}>Termin buchen <ArrowUpRight size={15} /></Link>
+            <Link className="price-book" to={`/book?service=${encodeURIComponent(treatment.id)}`} aria-label={`${treatment.name} für ${formatPrice(treatment.priceEuro)} als Wunschtermin auswählen`}>Termin buchen </Link>
           </article>)}
         </motion.div>
       </AnimatePresence>
@@ -255,7 +255,7 @@ function TreatmentPage({ treatment }: { treatment: Treatment }) {
 
 function CollectionPage() {
   return <main className="skin-collection-page">
-    <section className="skin-collection-hero"><div className="skin-collection-copy"><p className="eyebrow">VELORA · SKIN COLLECTION</p><h1>The Art of<br /><em>Radiant Skin</em></h1><p className="skin-collection-subtitle">Elevated skincare. Timeless beauty.</p><p className="skin-collection-intro">Pflege als tägliches Ritual: ausgewählte Texturen, klare Formen und eine ruhige Ästhetik. Die VELORA Skin Collection vereint Essentials für Momente, die ganz dir gehören.</p><a className="button button-dark" href="#kollektion">Kollektion entdecken <ArrowRight size={15} /></a><span className="skin-collection-caption">FIKTIVE PRODUKTWELT · DEMO-PREISE</span></div><div className="skin-collection-hero-art"><ProductArtwork product={skinProducts[0]} view="ritual" loading="eager" /><span className="skin-hero-stamp">CARE<br />AS A RITUAL</span><span className="skin-hero-index">VELORA FORMULA STUDIES · 01—06</span></div></section>
+    <section className="skin-collection-hero"><div className="skin-collection-copy"><p className="eyebrow">VELORA · SKIN COLLECTION</p><h1>The Art of<br /><em>Radiant Skin</em></h1><p className="skin-collection-subtitle">Elevated skincare. Timeless beauty.</p><p className="skin-collection-intro">Pflege als tägliches Ritual: ausgewählte Texturen, klare Formen und eine ruhige Ästhetik. Die VELORA Skin Collection vereint Essentials für Momente, die ganz dir gehören.</p><a className="button button-dark" href="#kollektion">Kollektion entdecken </a><span className="skin-collection-caption">FIKTIVE PRODUKTWELT · DEMO-PREISE</span></div><div className="skin-collection-hero-art"><ProductArtwork product={skinProducts[0]} view="ritual" loading="eager" /><span className="skin-hero-stamp">CARE<br />AS A RITUAL</span><span className="skin-hero-index">VELORA FORMULA STUDIES · 01—06</span></div></section>
     <section className="skin-collection-story"><p className="eyebrow">WENIGER, MIT BEDACHT</p><h2>Schöne Routinen<br /><em>beginnen mit Gefühl.</em></h2><p>Eine fiktive Kollektion, inspiriert von bewusster Pflege und zeitlosem Design. Entdecke sechs Produktideen – sorgfältig gestaltet, ehrlich beschrieben und ohne unbelegte Wirkversprechen.</p></section>
     <section className="skin-shop section-pad" id="kollektion"><div className="skin-shop-heading"><div><p className="eyebrow">DIE KOLLEKTION · 01—06</p><h2>Dein tägliches<br /><em>Hautgefühl.</em></h2></div><p>Jedes Produkt ist Teil einer fiktiven Demo-Kollektion. Preise und Inhaltsstoffangaben sind unverbindliche Beispielinhalte.</p></div><div className="skin-shop-grid">{skinProducts.map((product, index) => <ProductCard product={product} index={index} key={product.id} />)}</div><p className="skin-shop-footnote">VELORA SKIN COLLECTION · FIKTIVE PRODUKTE · KEINE ECHTEN BESTELLUNGEN</p></section>
   </main>
@@ -268,7 +268,7 @@ function SkinProductPage() {
   const [quantity, setQuantity] = useState(1)
   const { addProduct } = useCart()
 
-  if (!product) return <main className="not-found"><p className="eyebrow">PRODUKT NICHT GEFUNDEN</p><h1>Dieser Moment<br /><em>ist woanders.</em></h1><Link className="text-link" to="/collection">Zur Kollektion <ArrowRight size={16} /></Link></main>
+  if (!product) return <main className="not-found"><p className="eyebrow">PRODUKT NICHT GEFUNDEN</p><h1>Dieser Moment<br /><em>ist woanders.</em></h1><Link className="text-link" to="/collection">Zur Kollektion </Link></main>
 
   const galleryViews: { id: ArtworkView; label: string }[] = [
     { id: 'front', label: 'Produktansicht' },
@@ -277,12 +277,12 @@ function SkinProductPage() {
   ]
 
   return <main className="skin-product-page">
-    <nav className="skin-breadcrumb" aria-label="Brotkrumennavigation"><Link to="/">VELORA</Link><ArrowRight size={13} /><Link to="/collection">Skin Collection</Link><ArrowRight size={13} /><span>{product.name}</span></nav>
+    <nav className="skin-breadcrumb" aria-label="Brotkrumennavigation"><Link to="/">VELORA</Link><Link to="/collection">Skin Collection</Link><span>{product.name}</span></nav>
     <section className="skin-product-detail">
       <div className="skin-product-gallery"><div className="skin-product-main-art"><ProductArtwork product={product} view={view} loading="eager" /><span className="skin-product-gallery-label">{product.collection} · {product.volume}</span></div><div className="skin-gallery-thumbnails" role="group" aria-label="Produktansicht auswählen">{galleryViews.map((galleryView, index) => <button key={galleryView.id} type="button" className={`skin-gallery-thumb${view === galleryView.id ? ' is-active' : ''}`} aria-label={galleryView.label} aria-pressed={view === galleryView.id} onClick={() => setView(galleryView.id)}><ProductArtwork product={product} view={galleryView.id} /><span>0{index + 1}</span></button>)}</div></div>
-      <div className="skin-product-info"><p className="eyebrow">VELORA SKIN COLLECTION · {product.collection}</p><h1>{product.name}</h1><p className="skin-product-description">{product.description}</p><p className="skin-product-price">{formatSkinPrice(product.priceEuro)} <small>Demo-Preis · {product.volume}</small></p><div className="skin-product-facts"><div><span>HAUTTYP</span><strong>{product.skinType}</strong></div><div><span>GRÖSSE</span><strong>{product.volume}</strong></div></div><div className="skin-quantity-row"><span className="eyebrow">MENGE</span><div className="skin-quantity-control"><button type="button" aria-label="Menge verringern" disabled={quantity <= 1} onClick={() => setQuantity((current) => Math.max(1, current - 1))}><Minus size={14} /></button><output aria-live="polite">{quantity}</output><button type="button" aria-label="Menge erhöhen" onClick={() => setQuantity((current) => current + 1)}><Plus size={14} /></button></div></div><button className="button button-dark skin-add-to-cart" type="button" onClick={() => addProduct(product, quantity)}>In den Warenkorb <ArrowUpRight size={16} /></button><p className="skin-demo-inline">Demo-Warenkorb · Keine Bestellung, Zahlung oder Datenspeicherung</p><div className="skin-product-accordions"><details><summary>Anwendung</summary><p>{product.application}</p></details><details><summary>Inhaltsstoff-Highlights</summary><p>{product.ingredientHighlights.join(' · ')}</p><p>Fiktive Formulierungsinspiration – keine vollständige INCI-Liste.</p></details><details><summary>Produktdetails</summary><p>{product.name} · {product.volume}. Fiktives Portfolio-Produkt ohne reale Verfügbarkeit oder Produktversprechen.</p></details></div></div>
+      <div className="skin-product-info"><p className="eyebrow">VELORA SKIN COLLECTION · {product.collection}</p><h1>{product.name}</h1><p className="skin-product-description">{product.description}</p><p className="skin-product-price">{formatSkinPrice(product.priceEuro)} <small>Demo-Preis · {product.volume}</small></p><div className="skin-product-facts"><div><span>HAUTTYP</span><strong>{product.skinType}</strong></div><div><span>GRÖSSE</span><strong>{product.volume}</strong></div></div><div className="skin-quantity-row"><span className="eyebrow">MENGE</span><div className="skin-quantity-control"><button type="button" aria-label="Menge verringern" disabled={quantity <= 1} onClick={() => setQuantity((current) => Math.max(1, current - 1))}><Minus size={14} /></button><output aria-live="polite">{quantity}</output><button type="button" aria-label="Menge erhöhen" onClick={() => setQuantity((current) => current + 1)}><Plus size={14} /></button></div></div><button className="button button-dark skin-add-to-cart" type="button" onClick={() => addProduct(product, quantity)}>In den Warenkorb </button><p className="skin-demo-inline">Demo-Warenkorb · Keine Bestellung, Zahlung oder Datenspeicherung</p><div className="skin-product-accordions"><details><summary>Anwendung</summary><p>{product.application}</p></details><details><summary>Inhaltsstoff-Highlights</summary><p>{product.ingredientHighlights.join(' · ')}</p><p>Fiktive Formulierungsinspiration – keine vollständige INCI-Liste.</p></details><details><summary>Produktdetails</summary><p>{product.name} · {product.volume}. Fiktives Portfolio-Produkt ohne reale Verfügbarkeit oder Produktversprechen.</p></details></div></div>
     </section>
-    <section className="skin-related section-pad"><div><p className="eyebrow">DIE VELORA SKIN COLLECTION</p><h2>Weitere Pflege-<em>momente.</em></h2></div><div className="skin-related-links">{skinProducts.filter((item) => item.id !== product.id).slice(0, 3).map((item) => <Link to={`/collection/${item.id}`} key={item.id}><span>{item.collection}</span><strong>{item.name}</strong><ArrowUpRight size={15} /></Link>)}</div></section>
+    <section className="skin-related section-pad"><div><p className="eyebrow">DIE VELORA SKIN COLLECTION</p><h2>Weitere Pflege-<em>momente.</em></h2></div><div className="skin-related-links">{skinProducts.filter((item) => item.id !== product.id).slice(0, 3).map((item) => <Link to={`/collection/${item.id}`} key={item.id}><span>{item.collection}</span><strong>{item.name}</strong></Link>)}</div></section>
   </main>
 }
 
@@ -296,7 +296,7 @@ function AboutPage() {
 
   return <main className="about-page">
     <section className="about-hero">
-      <div className="about-hero-copy"><p className="eyebrow">VELORA · BEAUTY HOUSE KÖLN</p><h1>Beauty is personal.<br /><em>So are we.</em></h1><p>Ein Ort für Schönheit, die sich nach dir anfühlt. Mit persönlicher Beratung, modernen Beauty-Ritualen und Raum zum Ankommen.</p><a className="text-link" href="#philosophie">Unsere Philosophie <ArrowDown size={15} /></a></div>
+      <div className="about-hero-copy"><p className="eyebrow">VELORA · BEAUTY HOUSE KÖLN</p><h1>Beauty is personal.<br /><em>So are we.</em></h1><p>Ein Ort für Schönheit, die sich nach dir anfühlt. Mit persönlicher Beratung, modernen Beauty-Ritualen und Raum zum Ankommen.</p><a className="text-link" href="#philosophie">Unsere Philosophie </a></div>
       <div className="about-hero-art"><Visual variant="about-art about-hero-visual" asset="studio" label="Gestalterischer Platzhalter für den Empfang des fiktiven VELORA Studios" loading="eager" /><span className="about-image-note">STUDIO ATMOSPHÄRE · VISUELLER PLATZHALTER</span><span className="about-hero-index">KÖLN · 50° 56′ N</span></div>
     </section>
 
@@ -320,7 +320,7 @@ function AboutPage() {
       <Reveal className="about-team-heading"><div><p className="eyebrow">MEET OUR BEAUTY EXPERTS · 03</p><h2>Persönlich.<br /><em>Mit Gefühl.</em></h2></div><p>Drei fiktive Beauty-Expertinnen begleiten dich mit unterschiedlichen Schwerpunkten. Wähle im Demo-Buchungsablauf, wen du gerne anfragen möchtest.</p></Reveal>
       <div className="about-team-grid">{beautyExperts.map((expert, index) => <Reveal className={`about-expert about-expert-${expert.id}`} delay={index * .08} key={expert.id}>
         <div className="about-expert-portrait"><img src={expert.portrait} alt={`Illustratives Demo-Porträt von ${expert.name}`} loading="lazy" decoding="async" /><span>FIKTIVES PROFIL · ILLUSTRATION</span></div>
-        <div className="about-expert-meta"><span className="eyebrow">BEAUTY EXPERT · 0{index + 1}</span><h3>{expert.name}</h3><p className="about-expert-role">{expert.role}</p><p className="about-expert-bio">{expert.bio}</p><Link to={`/book?expert=${encodeURIComponent(expert.id)}`} className="about-expert-cta">Termin bei {expert.name} anfragen <ArrowUpRight size={15} /></Link></div>
+        <div className="about-expert-meta"><span className="eyebrow">BEAUTY EXPERT · 0{index + 1}</span><h3>{expert.name}</h3><p className="about-expert-role">{expert.role}</p><p className="about-expert-bio">{expert.bio}</p><Link to={`/book?expert=${encodeURIComponent(expert.id)}`} className="about-expert-cta">Termin bei {expert.name} anfragen </Link></div>
       </Reveal>)}</div>
       <p className="about-team-note">Alle Teamprofile sind fiktive Demoinhalte. Die dargestellten Rollen und Schwerpunkte sind keine realen Qualifikationsnachweise.</p>
     </section>
@@ -367,7 +367,7 @@ function ContactPage() {
 
   return <main className="contact-page">
     <section className="contact-hero">
-      <div className="contact-hero-copy"><p className="eyebrow">VELORA · WIR SIND FÜR DICH DA</p><h1>Let’s make<br /><em>time for you.</em></h1><p>Ein schöner Moment beginnt manchmal mit einem Gespräch. Teile deine Frage mit uns – in dieser Demo bleibt sie ganz bei dir.</p><a className="text-link" href="#kontaktformular">Zum Kontaktformular <ArrowDown size={15} /></a></div>
+      <div className="contact-hero-copy"><p className="eyebrow">VELORA · WIR SIND FÜR DICH DA</p><h1>Let’s make<br /><em>time for you.</em></h1><p>Ein schöner Moment beginnt manchmal mit einem Gespräch. Teile deine Frage mit uns – in dieser Demo bleibt sie ganz bei dir.</p><a className="text-link" href="#kontaktformular">Zum Kontaktformular </a></div>
       <div className="contact-hero-art"><Visual variant="contact-art contact-hero-visual" label="Abstrakte VELORA Bildkomposition als gekennzeichneter Platzhalter" /><span className="contact-art-caption">VELORA · EIN MOMENT FÜR DICH</span></div>
     </section>
     <section className="contact-main section-pad" id="kontaktformular">
@@ -381,7 +381,7 @@ function ContactPage() {
           <div className="contact-field"><label htmlFor="contact-subject">Betreff <span aria-hidden="true">*</span></label><input id="contact-subject" name="subject" maxLength={120} value={fields.subject} onChange={(event) => updateField('subject', event.target.value)} aria-invalid={Boolean(errors.subject)} aria-describedby={errors.subject ? 'contact-subject-error' : undefined} />{errors.subject && <span className="contact-error" id="contact-subject-error" role="alert">{errors.subject}</span>}</div>
           <div className="contact-field contact-field-wide"><label htmlFor="contact-message">Deine Nachricht <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" rows={5} maxLength={2000} value={fields.message} onChange={(event) => updateField('message', event.target.value)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'contact-message-error' : 'contact-demo-note'} />{errors.message && <span className="contact-error" id="contact-message-error" role="alert">{errors.message}</span>}<span className="contact-demo-note" id="contact-demo-note">Bitte gib in dieser Demo keine sensiblen persönlichen Daten ein.</span></div>
           <p className="contact-required-note"><span aria-hidden="true">*</span> Pflichtfeld · Diese Demo sendet und speichert keine Nachricht.</p>
-          <button type="submit" className="button button-dark contact-submit">Nachricht senden <ArrowUpRight size={16} /></button>
+          <button type="submit" className="button button-dark contact-submit">Nachricht senden </button>
         </form>}
       </div>
       <aside className="contact-details" aria-label="Fiktive Studioinformationen">
@@ -389,7 +389,7 @@ function ContactPage() {
         <div className="contact-detail-item"><span>STANDORT</span><strong>Köln, Deutschland</strong><small>Allgemeine Ortsangabe – keine Geschäftsadresse.</small></div>
         <div className="contact-detail-item"><span>ÖFFNUNGSZEITEN</span><strong>Montag – Freitag · 09:00 – 18:00</strong><strong>Samstag · 10:00 – 16:00</strong><small>Nur illustrative Demo-Zeiten, keine realen Öffnungszeiten.</small></div>
         <div className="contact-detail-item"><span>KONTAKT</span><strong>Keine realen Kontaktdaten hinterlegt</strong><small>Es gibt keine echte E-Mail-Adresse oder Telefonnummer.</small></div>
-        <div className="contact-booking-cta"><p>Ein bestimmtes Treatment im Sinn?</p><Link to="/book" className="text-link">Demo-Termin entdecken <ArrowUpRight size={15} /></Link></div>
+        <div className="contact-booking-cta"><p>Ein bestimmtes Treatment im Sinn?</p><Link to="/book" className="text-link">Demo-Termin entdecken </Link></div>
       </aside>
     </section>
     <p className="contact-disclaimer">VELORA ist ein fiktives Konzeptprojekt. Formular, Standort und Öffnungszeiten sind illustrative Demo-Inhalte.</p>
@@ -397,7 +397,7 @@ function ContactPage() {
 }
 
 function BookingStrip({ category }: { category?: TreatmentCategoryId }) {
-  return <section className="booking-strip"><p className="eyebrow">DEIN VELORA MOMENT</p><h2>Bereit für Zeit <em>für dich?</em></h2><Link to={category ? `/book?category=${category}` : '/book'} className="button button-dark">Termin entdecken <ArrowUpRight size={16} /></Link></section>
+  return <section className="booking-strip"><p className="eyebrow">DEIN VELORA MOMENT</p><h2>Bereit für Zeit <em>für dich?</em></h2><Link to={category ? `/book?category=${category}` : '/book'} className="button button-dark">Termin entdecken </Link></section>
 }
 
 function LegalPage({ privacy = false }: { privacy?: boolean }) {
@@ -405,7 +405,7 @@ function LegalPage({ privacy = false }: { privacy?: boolean }) {
 }
 
 function Footer() {
-  return <footer className="site-footer"><div className="footer-main"><div className="footer-brand"><Brand light /><p>Beauty in every detail.</p></div><div className="footer-column"><p className="eyebrow">ENTDECKEN</p><Link to="/treatments">Treatments</Link><Link to="/collection">Skin Collection</Link><Link to="/about">Über uns</Link><Link to="/contact">Kontakt</Link></div><div className="footer-column"><p className="eyebrow">BEAUTY WELT</p>{treatments.map(item => <Link key={item.path} to={item.path}>{item.title}</Link>)}</div><div className="footer-column"><p className="eyebrow">HIER FINDEST DU UNS</p><span>Köln, Deutschland</span><span className="social-placeholder">Instagram · folgt</span><Link to="/book" className="footer-book">Termin buchen <ArrowUpRight size={14} /></Link></div></div><div className="footer-bottom"><span>© 2026 VELORA · BEAUTY HOUSE KÖLN</span><div><Link to="/impressum">Impressum</Link><Link to="/datenschutz">Datenschutz</Link></div><span className="demo-note">Fiktives Konzeptprojekt · Webdesign, Frontend, Buchung & Shop als Demo · Kein realer Salon</span></div></footer>
+  return <footer className="site-footer"><div className="footer-main"><div className="footer-brand"><Brand light /><p>Beauty in every detail.</p></div><div className="footer-column"><p className="eyebrow">ENTDECKEN</p><Link to="/treatments">Treatments</Link><Link to="/collection">Skin Collection</Link><Link to="/about">Über uns</Link><Link to="/contact">Kontakt</Link></div><div className="footer-column"><p className="eyebrow">BEAUTY WELT</p>{treatments.map(item => <Link key={item.path} to={item.path}>{item.title}</Link>)}</div><div className="footer-column"><p className="eyebrow">HIER FINDEST DU UNS</p><span>Köln, Deutschland</span><span className="social-placeholder">Instagram · folgt</span><Link to="/book" className="footer-book">Termin buchen </Link></div></div><div className="footer-bottom"><span>© 2026 VELORA · BEAUTY HOUSE KÖLN</span><div><Link to="/impressum">Impressum</Link><Link to="/datenschutz">Datenschutz</Link></div><span className="demo-note">Fiktives Konzeptprojekt · Webdesign, Frontend, Buchung & Shop als Demo · Kein realer Salon</span></div></footer>
 }
 
 function ScrollToTop() {
@@ -420,7 +420,7 @@ function App() {
     <Route path="/treatments" element={<TreatmentsPage />} />
     {treatments.map(item => <Route key={item.path} path={item.path} element={<TreatmentPage treatment={item} />} />)}
     <Route path="/collection" element={<CollectionPage />} /><Route path="/collection/:productId" element={<SkinProductPage />} /><Route path="/about" element={<AboutPage />} /><Route path="/contact" element={<ContactPage />} /><Route path="/book" element={<BookingWizard />} /><Route path="/impressum" element={<LegalPage />} /><Route path="/datenschutz" element={<LegalPage privacy />} />
-    <Route path="*" element={<main className="not-found"><p className="eyebrow">404 · NICHT GEFUNDEN</p><h1>Diese Seite<br /><em>ist woanders.</em></h1><Link className="text-link" to="/">Zurück zur Startseite <ArrowRight size={16} /></Link></main>} />
+    <Route path="*" element={<main className="not-found"><p className="eyebrow">404 · NICHT GEFUNDEN</p><h1>Diese Seite<br /><em>ist woanders.</em></h1><Link className="text-link" to="/">Zurück zur Startseite </Link></main>} />
   </Routes><Footer /></>
 }
 

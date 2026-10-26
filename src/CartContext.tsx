@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { ArrowRight, ArrowUpRight, Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
+import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
 import { findSkinProduct, formatSkinPrice, type SkinProduct } from './data/skinProducts'
 import { ProductArtwork } from './ProductArtwork'
 import { CartContext, type CartContextValue, type CartLine, useCart } from './cartStore'
@@ -92,13 +92,13 @@ function CartDrawer() {
       <button className="cart-backdrop" type="button" aria-label="Warenkorb schließen" onClick={closeDrawer} />
       <motion.aside ref={drawerRef} className="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-heading" initial={reducedMotion ? false : { x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ duration: reducedMotion ? 0 : .32, ease: [0.22, 1, 0.36, 1] }}>
         <header className="cart-drawer-header"><div><p className="eyebrow">VELORA SKIN COLLECTION</p><h2 id="cart-heading">Dein Warenkorb <span>({products.reduce((sum, line) => sum + line.quantity, 0)})</span></h2></div><button ref={closeButtonRef} type="button" className="cart-close" onClick={closeDrawer} aria-label="Warenkorb schließen"><X size={19} /></button></header>
-        {products.length === 0 ? <div className="cart-empty"><ShoppingBag size={27} strokeWidth={1.2} /><p className="eyebrow">NOCH NICHTS AUSGEWÄHLT</p><h3>Ein Ritual für dich wartet.</h3><p>Entdecke die VELORA Skin Collection und finde deinen persönlichen Favoriten.</p><Link to="/collection" className="button button-dark" onClick={closeDrawer}>Kollektion entdecken <ArrowRight size={15} /></Link></div> : <>
+        {products.length === 0 ? <div className="cart-empty"><ShoppingBag size={27} strokeWidth={1.2} /><p className="eyebrow">NOCH NICHTS AUSGEWÄHLT</p><h3>Ein Ritual für dich wartet.</h3><p>Entdecke die VELORA Skin Collection und finde deinen persönlichen Favoriten.</p><Link to="/collection" className="button button-dark" onClick={closeDrawer}>Kollektion entdecken </Link></div> : <>
           <div className="cart-lines">{products.map(({ product, quantity }) => <article className="cart-line" key={product.id}>
             <Link to={`/collection/${product.id}`} className="cart-line-art" aria-label={`${product.name} entdecken`} onClick={closeDrawer}><ProductArtwork product={product} /></Link>
             <div className="cart-line-info"><Link to={`/collection/${product.id}`} onClick={closeDrawer}>{product.name}</Link><span>{product.volume} · {formatSkinPrice(product.priceEuro)}</span><div className="cart-quantity" aria-label={`Menge ${product.name}`}><button type="button" aria-label={`${product.name} Menge verringern`} onClick={() => changeQuantity(product.id, quantity - 1)}><Minus size={13} /></button><span>{quantity}</span><button type="button" aria-label={`${product.name} Menge erhöhen`} onClick={() => changeQuantity(product.id, quantity + 1)}><Plus size={13} /></button></div></div>
             <div className="cart-line-total"><strong>{formatSkinPrice(product.priceEuro * quantity)}</strong><button type="button" aria-label={`${product.name} entfernen`} onClick={() => removeProduct(product.id)}><Trash2 size={14} /></button></div>
           </article>)}</div>
-          <div className="cart-drawer-footer"><div className="cart-subtotal"><span>Zwischensumme · Demo</span><strong>{formatSkinPrice(subtotal)}</strong></div><p>Demo-Warenkorb · Keine Bestellung, Zahlung oder Datenspeicherung.</p><button className="button button-dark cart-demo-button" type="button" onClick={closeDrawer}>Weiter entdecken <ArrowUpRight size={15} /></button></div>
+          <div className="cart-drawer-footer"><div className="cart-subtotal"><span>Zwischensumme · Demo</span><strong>{formatSkinPrice(subtotal)}</strong></div><p>Demo-Warenkorb · Keine Bestellung, Zahlung oder Datenspeicherung.</p><button className="button button-dark cart-demo-button" type="button" onClick={closeDrawer}>Weiter entdecken </button></div>
         </>}
       </motion.aside>
     </motion.div>}

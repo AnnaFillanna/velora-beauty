@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, UserRound } from 'lucide-react'
+import { CalendarDays, Check, Clock3, UserRound } from 'lucide-react'
 import { beautyExperts, demoAvailability, expertsForTreatment, noPreferenceExpertId, type BeautyExpert } from './data/booking'
 import { getPricedTreatment, pricedTreatments, treatmentCategories, type TreatmentCategoryId } from './data/treatments'
 
@@ -273,12 +273,12 @@ function BookingWizard() {
       <p className="eyebrow">DEMO · NICHT VERBINDLICH</p>
       <h2>Danke für deinen<br /><em>Moment.</em></h2>
       <p>Deine Demo-Anfrage wurde nur in dieser Ansicht dargestellt. Es wurde keine Buchung ausgelöst, keine E-Mail versendet und nichts gespeichert.</p>
-      <Link to="/" className="button button-dark">Zur Startseite <ArrowUpRight size={15} /></Link>
+      <Link to="/" className="button button-dark">Zur Startseite </Link>
     </section>
 
     if (step === 0) return <section className="booking-step-content" aria-labelledby="booking-step-heading">
       <p className="eyebrow">SCHRITT 01 · DEIN RITUAL</p><h2 id="booking-step-heading">Was darf es<br /><em>für dich sein?</em></h2>
-      <fieldset className="booking-category-field"><legend className="booking-field-label">Behandlungsbereich</legend><div className="booking-category-options">{treatmentCategories.map((category) => <button key={category.id} type="button" className={`booking-category-option${booking.category === category.id ? ' is-selected' : ''}`} aria-pressed={booking.category === category.id} onClick={() => chooseCategory(category.id)}>{category.label}<ArrowUpRight size={14} /></button>)}</div></fieldset>
+      <fieldset className="booking-category-field"><legend className="booking-field-label">Behandlungsbereich</legend><div className="booking-category-options">{treatmentCategories.map((category) => <button key={category.id} type="button" className={`booking-category-option${booking.category === category.id ? ' is-selected' : ''}`} aria-pressed={booking.category === category.id} onClick={() => chooseCategory(category.id)}>{category.label}</button>)}</div></fieldset>
       <label className="booking-field-label" htmlFor="booking-treatment">Behandlung auswählen</label>
       <select className={`booking-select${errors.treatment ? ' has-error' : ''}`} id="booking-treatment" value={booking.treatmentId} onChange={(event) => chooseTreatment(event.target.value)} aria-invalid={Boolean(errors.treatment)} aria-describedby={errors.treatment ? 'booking-treatment-error' : 'booking-treatment-detail'}>
         {availableTreatments.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
@@ -299,7 +299,7 @@ function BookingWizard() {
     if (step === 2) return <section className="booking-step-content" aria-labelledby="booking-step-heading">
       <p className="eyebrow">SCHRITT 03 · WANN PASST ES DIR?</p><h2 id="booking-step-heading">Deine Zeit.<br /><em>Dein Moment.</em></h2>
       <div className="booking-calendar" aria-invalid={Boolean(errors.date)} aria-describedby={errors.date ? 'booking-date-error' : undefined}>
-        <div className="booking-calendar-heading"><div><span className="booking-field-label">Datum auswählen</span><strong>{demoAvailability.months[calendarMonth.getMonth()]} {calendarMonth.getFullYear()}</strong></div><div className="booking-calendar-nav"><button type="button" aria-label="Vorheriger Monat" disabled={monthStart(calendarMonth).getTime() <= monthStart(dateAtOffset(0)).getTime()} onClick={() => setCalendarMonth((month) => new Date(month.getFullYear(), month.getMonth() - 1, 1, 12))}><ArrowLeft size={16} /></button><button type="button" aria-label="Nächster Monat" disabled={monthStart(calendarMonth).getTime() >= lastMonth.getTime()} onClick={() => setCalendarMonth((month) => new Date(month.getFullYear(), month.getMonth() + 1, 1, 12))}><ArrowRight size={16} /></button></div></div>
+        <div className="booking-calendar-heading"><div><span className="booking-field-label">Datum auswählen</span><strong>{demoAvailability.months[calendarMonth.getMonth()]} {calendarMonth.getFullYear()}</strong></div><div className="booking-calendar-nav"><button type="button" aria-label="Vorheriger Monat" disabled={monthStart(calendarMonth).getTime() <= monthStart(dateAtOffset(0)).getTime()} onClick={() => setCalendarMonth((month) => new Date(month.getFullYear(), month.getMonth() - 1, 1, 12))}>Zurück</button><button type="button" aria-label="Nächster Monat" disabled={monthStart(calendarMonth).getTime() >= lastMonth.getTime()} onClick={() => setCalendarMonth((month) => new Date(month.getFullYear(), month.getMonth() + 1, 1, 12))}>Weiter</button></div></div>
         <div className="booking-calendar-grid" role="group" aria-label="Kalendertage">{demoAvailability.weekdays.slice(1).concat(demoAvailability.weekdays[0]).map((day) => <span className="booking-calendar-weekday" key={day}>{day}</span>)}{calendarCells}</div>
         {errors.date && <p className="booking-error" id="booking-date-error" role="alert">{errors.date}</p>}
       </div>
@@ -343,7 +343,7 @@ function BookingWizard() {
         </nav>
         <form ref={bookingFormRef} onSubmit={handleFormSubmit} noValidate>
           <AnimatePresence mode="wait" initial={false}><motion.div key={submitted ? 'success' : step} initial={reducedMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: reducedMotion ? 0 : .22 }}>{renderStep()}</motion.div></AnimatePresence>
-          {!submitted && <div className="booking-form-actions">{step > 0 && <button type="button" className="booking-back" onClick={goBack}><ArrowLeft size={15} />Zurück</button>}{step < steps.length - 1 ? <button type="submit" className="button button-dark">Weiter <ArrowRight size={15} /></button> : <button type="submit" className="button button-dark">Terminanfrage senden <ArrowUpRight size={15} /></button>}</div>}
+          {!submitted && <div className="booking-form-actions">{step > 0 && <button type="button" className="booking-back" onClick={goBack}>Zurück</button>}{step < steps.length - 1 ? <button type="submit" className="button button-dark">Weiter </button> : <button type="submit" className="button button-dark">Terminanfrage senden </button>}</div>}
         </form>
         <p className="booking-required-note">* Erforderliche Angaben · Alle verfügbaren Termine sind fiktiv.</p>
       </section>
