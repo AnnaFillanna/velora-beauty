@@ -161,7 +161,7 @@ function TreatmentGrid({ compact = false }: { compact?: boolean }) {
   const list = compact ? treatments.slice(0, 4) : treatments
   return <div className="treatment-grid">{list.map((item, index) => <Reveal key={item.path} className={`treatment-card card-${index + 1}`} delay={index * 0.07}>
     <Link to={item.path} className="treatment-link">
-      <Visual variant={item.visual} asset={item.image} label={`${item.title} – abstrakte Bildfläche`} />
+      <Visual variant={item.visual} asset={item.image} label={`${item.title} – Beauty-Porträt`} />
       <div className="treatment-meta"><span className="eyebrow">{item.index} / {item.subtitle}</span></div>
       <h3>{item.title}</h3>
     </Link>
@@ -197,8 +197,8 @@ function Home() {
   </>
 }
 
-function PageHero({ eyebrow, title, description, visual = 'inner-art' }: { eyebrow: string; title: React.ReactNode; description: string; visual?: string }) {
-  return <section className="page-hero"><div className="page-hero-copy"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-description">{description}</p></div><Visual variant={visual} /></section>
+function PageHero({ eyebrow, title, description, visual = 'inner-art', asset }: { eyebrow: string; title: React.ReactNode; description: string; visual?: string; asset?: EditorialImage }) {
+  return <section className="page-hero"><div className="page-hero-copy"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-description">{description}</p></div><Visual variant={visual} asset={asset} label={asset ? `${eyebrow} – Bildmotiv` : undefined} /></section>
 }
 
 function TreatmentsPage() {
@@ -247,7 +247,7 @@ function TreatmentPriceList() {
 }
 
 function TreatmentPage({ treatment }: { treatment: Treatment }) {
-  return <main><PageHero eyebrow={`VELORA TREATMENTS · ${treatment.index}`} title={<>{treatment.title.split(' & ')[0]} <em>& {treatment.title.split(' & ')[1]}</em></>} description={treatment.description} visual={treatment.visual} /><section className="inner-section section-pad detail-section"><div><p className="eyebrow">DEIN MOMENT, DEIN RITUAL</p><h2>{treatment.subtitle}<br /><em>mit VELORA.</em></h2></div><p>Jede Behandlung beginnt mit einem persönlichen Gespräch. So entsteht ein Treatment, das sich an deinen Wünschen orientiert – in deinem Tempo und in entspannter Atmosphäre.</p></section><BookingStrip category={treatment.bookingCategory} /></main>
+  return <main><PageHero eyebrow={`VELORA TREATMENTS · ${treatment.index}`} title={<>{treatment.title.split(' & ')[0]} <em>& {treatment.title.split(' & ')[1]}</em></>} description={treatment.description} visual={treatment.visual} asset={treatment.image} /><section className="inner-section section-pad detail-section"><div><p className="eyebrow">DEIN MOMENT, DEIN RITUAL</p><h2>{treatment.subtitle}<br /><em>mit VELORA.</em></h2></div><p>Jede Behandlung beginnt mit einem persönlichen Gespräch. So entsteht ein Treatment, das sich an deinen Wünschen orientiert – in deinem Tempo und in entspannter Atmosphäre.</p></section><BookingStrip category={treatment.bookingCategory} /></main>
 }
 
 function CollectionPage() {
