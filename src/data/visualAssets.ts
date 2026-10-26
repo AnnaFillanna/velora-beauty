@@ -20,9 +20,9 @@ export const editorialImages = {
   collectionSpf: 'collection-spf.webp',
   studio: 'studio.jpg',
   location: 'location.jpg',
-  studioReception: 'studio-reception.webp',
-  studioTreatment: 'studio-treatment.webp',
-  studioDetails: 'studio-details.webp',
+  studioReception: 'location.jpg',
+  studioTreatment: 'studio.jpg',
+  studioDetails: 'body-laser.jpg',
 } as const
 
 export type EditorialImage = keyof typeof editorialImages

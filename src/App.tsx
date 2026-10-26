@@ -306,10 +306,10 @@ function AboutPage() {
     <section className="about-experience">
       <div className="about-experience-heading section-pad"><Reveal><p className="eyebrow">EIN ORT ZUM ANKOMMEN · 02</p><h2>The salon<br /><em>experience.</em></h2><p>Warme Materialien, sanftes Licht und ausgewählte Details bilden den Rahmen für deine persönliche Auszeit.</p></Reveal></div>
       <div className="about-gallery" aria-label="Einblicke in die fiktive VELORA Studio-Atmosphäre">
-        <Reveal className="about-gallery-item about-gallery-entry"><Visual variant="about-gallery-visual about-gallery-entry-art" asset="studioReception" label="Platzhalter für einen eleganten Empfangsbereich" /><span className="about-gallery-label">01 / EMPFANG</span></Reveal>
-        <Reveal className="about-gallery-item about-gallery-treatment" delay={.08}><Visual variant="about-gallery-visual about-gallery-treatment-art" asset="studioTreatment" label="Platzhalter für einen modernen Behandlungsraum" /><span className="about-gallery-label">02 / BEHANDLUNGSRAUM</span></Reveal>
-        <Reveal className="about-gallery-item about-gallery-detail" delay={.12}><Visual variant="about-gallery-visual about-gallery-detail-art" asset="studioDetails" label="Platzhalter für natürliche Materialien und Beauty-Details" /><span className="about-gallery-label">03 / MATERIAL & LICHT</span></Reveal>
-        <Reveal className="about-gallery-note" delay={.16}><span className="eyebrow">RUHE IN JEDEM DETAIL</span><p>Ein bewusst gestalteter Rahmen – zurückhaltend, warm und ganz auf deinen Moment ausgerichtet.</p><span className="about-image-note">VISUELLE PLATZHALTER · BILDER FOLGEN</span></Reveal>
+        <Reveal className="about-gallery-item about-gallery-entry"><Visual variant="about-gallery-visual about-gallery-entry-art" asset="studioReception" label="Illustrative Aufnahme eines modernen Studio-Interieurs" /><span className="about-gallery-label">01 / STUDIOINTERIEUR</span></Reveal>
+        <Reveal className="about-gallery-item about-gallery-treatment" delay={.08}><Visual variant="about-gallery-visual about-gallery-treatment-art" asset="studioTreatment" label="Illustrative Aufnahme eines Beauty-Studio-Bereichs" /><span className="about-gallery-label">02 / STUDIOBEREICH</span></Reveal>
+        <Reveal className="about-gallery-item about-gallery-detail" delay={.12}><Visual variant="about-gallery-visual about-gallery-detail-art" asset="studioDetails" label="Illustrative Aufnahme eines Beauty-Behandlungsmoments" /><span className="about-gallery-label">03 / BEAUTY-RITUAL</span></Reveal>
+        <Reveal className="about-gallery-note" delay={.16}><span className="eyebrow">RUHE IN JEDEM DETAIL</span><p>Ein bewusst gestalteter Rahmen – zurückhaltend, warm und ganz auf deinen Moment ausgerichtet.</p><span className="about-image-note">VISUELLE INSPIRATION · FIKTIVES STUDIO</span></Reveal>
       </div>
     </section>
 
