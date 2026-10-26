@@ -22,7 +22,7 @@ export const editorialImages = {
   location: 'location.jpg',
   studioReception: 'location.jpg',
   studioTreatment: 'studio.jpg',
-  studioDetails: 'body-laser.jpg',
+  studioDetails: 'studio-details.jpg',
 } as const
 
 export type EditorialImage = keyof typeof editorialImages
