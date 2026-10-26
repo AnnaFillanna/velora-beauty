@@ -139,17 +139,14 @@ function CinematicHero() {
 
   return <section ref={heroRef} className="hero">
     <motion.div className="hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.12, ease: [0.22, 1, 0.36, 1] }}>
-      <p className="eyebrow hero-eyebrow"><span /> BEAUTY HOUSE · KÖLN</p>
-      <h1><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.85, delay: reducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}>Dein Look.</motion.span></span><span className="hero-title-line"><motion.span initial={reducedMotion ? false : { y: '110%' }} animate={{ y: 0 }} transition={{ duration: reducedMotion ? 0 : 0.9, delay: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}><em>Dein Rhythmus.</em></motion.span></span></h1>
-      <p className="hero-description">Lashes, Brows, Nails und Skin. Wähle dein Treatment – wir stimmen Form, Farbe und Pflege auf dich ab.</p>
+      <p className="eyebrow hero-eyebrow">VELORA — BEAUTY HOUSE, KÖLN</p>
+      <h1><span className="hero-title-line">Beauty,</span><span className="hero-title-bridge">auf deine</span><span className="hero-title-line hero-title-accent">Art.</span></h1>
+      <p className="hero-description">Ausdrucksstarke Brows. Feine Nails. Frische Haut. Treatments, die deinen Stil unterstreichen.</p>
       <div className="hero-actions"><Link to="/book" className="button button-dark">Termin buchen </Link><Link to="/treatments" className="text-link">Treatments entdecken </Link></div>
-      <ul className="hero-specialties" aria-label="Unsere Beauty-Bereiche"><li>Lashes &amp; Brows</li><li>Nails</li><li>Skin &amp; Care</li></ul><div className="hero-note">In Köln. In deinem Tempo.</div>
     </motion.div>
     <motion.div className="hero-art-wrap" style={{ scale: sceneScale, y: sceneY }} onPointerMove={moveWithPointer} onPointerLeave={resetPointer}>
       <motion.div className="hero-art-depth" style={{ x: pointerX, y: pointerY }}>
         <Visual variant="hero-art" asset="hero" label="Abstrakte, skulpturale VELORA Bildwelt in warmen Naturtönen" loading="eager" />
-        <div className="hero-stamp">SCHÖNHEIT<br />IST PERSÖNLICH<span>✳</span></div>
-        <div className="hero-side-note">DEIN BEAUTY MOMENT — 01</div>
       </motion.div>
     </motion.div>
     <a href="#intro" className="scroll-cue" aria-label="Weiter zum Inhalt"><span>Scrollen</span></a>
