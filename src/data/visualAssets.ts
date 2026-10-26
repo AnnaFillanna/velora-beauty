@@ -1,24 +1,25 @@
 /// <reference types="vite/client" />
 
-const imageFiles = import.meta.glob<string>('../assets/images/*.{webp,jpg}', {
+const imageFiles = import.meta.glob<string>('../assets/images/*.{webp,jpg,jpeg,png}', {
   eager: true,
   import: 'default',
 })
 
 export const editorialImages = {
   treatments: 'treatments-selected.jpg',
-  hero: 'hero-beauty.webp',
+  hero: 'hero-beauty.jpg',
   lashes: 'lashes-brows-selected.jpg',
-  nails: 'nails.webp',
+  nails: 'nails.jpg',
   facial: 'face-skin-selected.jpg',
-  bodyLaser: 'body-laser.webp',
+  bodyLaser: 'body-laser.jpg',
   collectionSerum: 'collection-serum.webp',
   collectionCream: 'collection-cream.webp',
   collectionCleanser: 'collection-cleanser.webp',
   collectionEssence: 'collection-essence.webp',
   collectionEye: 'collection-eye.webp',
   collectionSpf: 'collection-spf.webp',
-  studio: 'studio-interior.webp',
+  studio: 'studio.jpg',
+  location: 'location.jpg',
   studioReception: 'studio-reception.webp',
   studioTreatment: 'studio-treatment.webp',
   studioDetails: 'studio-details.webp',

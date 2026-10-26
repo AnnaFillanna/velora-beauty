@@ -108,7 +108,7 @@ h1 em, h2 em { color: var(--burgundy); font-weight: 400; }
 .treatment-link .art-visual { height: clamp(280px, 38vw, 485px); }
 .art-image { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .art-visual.has-image::before, .art-visual.has-image .art-shape { display: none; }
-.hero-art.has-image .art-image { object-position: 56% center; }
+.hero-art.has-image .art-image { inset: 50% auto auto 50%; width: auto; height: 92%; max-width: 100%; object-fit: contain; object-position: center; transform: translate(-50%, -50%); }
 .hero-art.has-image { background: #e6d5ce; }
 .treatment-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
 .treatment-meta .eyebrow { color: #716667; font-size: 8px; letter-spacing: .12em; }

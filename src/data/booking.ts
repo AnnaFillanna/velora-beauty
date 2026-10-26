@@ -1,6 +1,6 @@
-import sophiaPortrait from '../assets/team/sophia.svg'
-import emiliaPortrait from '../assets/team/emilia.svg'
-import isabellaPortrait from '../assets/team/isabella.svg'
+import sophiaPortrait from '../assets/team/sophia.jpg'
+import emiliaPortrait from '../assets/team/emilia.jpg'
+import isabellaPortrait from '../assets/team/isabella.jpg'
 
 export type BeautyExpert = {
   id: string

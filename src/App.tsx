@@ -294,7 +294,7 @@ function AboutPage() {
   return <main className="about-page">
     <section className="about-hero">
       <div className="about-hero-copy"><p className="eyebrow">VELORA · BEAUTY HOUSE KÖLN</p><h1>Beauty is personal.<br /><em>So are we.</em></h1><p>Ein Ort für Schönheit, die sich nach dir anfühlt. Mit persönlicher Beratung, modernen Beauty-Ritualen und Raum zum Ankommen.</p><a className="text-link" href="#philosophie">Unsere Philosophie </a></div>
-      <div className="about-hero-art"><Visual variant="about-art about-hero-visual" asset="studio" label="Gestalterischer Platzhalter für den Empfang des fiktiven VELORA Studios" loading="eager" /><span className="about-image-note">STUDIO ATMOSPHÄRE · VISUELLER PLATZHALTER</span><span className="about-hero-index">KÖLN · 50° 56′ N</span></div>
+      <div className="about-hero-art"><Visual variant="about-art about-hero-visual" asset="studio" label="Illustrative Aufnahme eines Beauty-Studio-Interieurs für das fiktive VELORA Konzept" loading="eager" /><span className="about-image-note">STUDIO ATMOSPHÄRE · VISUELLES KONZEPT</span><span className="about-hero-index">KÖLN · 50° 56′ N</span></div>
     </section>
 
     <section className="about-philosophy section-pad" id="philosophie">
@@ -316,7 +316,7 @@ function AboutPage() {
     <section className="about-team section-pad" id="beauty-experts">
       <Reveal className="about-team-heading"><div><p className="eyebrow">MEET OUR BEAUTY EXPERTS · 03</p><h2>Persönlich.<br /><em>Mit Gefühl.</em></h2></div><p>Drei fiktive Beauty-Expertinnen begleiten dich mit unterschiedlichen Schwerpunkten. Wähle im Demo-Buchungsablauf, wen du gerne anfragen möchtest.</p></Reveal>
       <div className="about-team-grid">{beautyExperts.map((expert, index) => <Reveal className={`about-expert about-expert-${expert.id}`} delay={index * .08} key={expert.id}>
-        <div className="about-expert-portrait"><img src={expert.portrait} alt={`Illustratives Demo-Porträt von ${expert.name}`} loading="lazy" decoding="async" /><span>FIKTIVES PROFIL · ILLUSTRATION</span></div>
+        <div className="about-expert-portrait"><img src={expert.portrait} alt={`Demo-Porträt von ${expert.name}`} loading="lazy" decoding="async" /><span>FIKTIVES PROFIL · DEMO-PORTRÄT</span></div>
         <div className="about-expert-meta"><span className="eyebrow">BEAUTY EXPERT · 0{index + 1}</span><h3>{expert.name}</h3><p className="about-expert-role">{expert.role}</p><p className="about-expert-bio">{expert.bio}</p><Link to={`/book?expert=${encodeURIComponent(expert.id)}`} className="about-expert-cta">Termin bei {expert.name} anfragen </Link></div>
       </Reveal>)}</div>
       <p className="about-team-note">Alle Teamprofile sind fiktive Demoinhalte. Die dargestellten Rollen und Schwerpunkte sind keine realen Qualifikationsnachweise.</p>
@@ -365,7 +365,7 @@ function ContactPage() {
   return <main className="contact-page">
     <section className="contact-hero">
       <div className="contact-hero-copy"><p className="eyebrow">VELORA · WIR SIND FÜR DICH DA</p><h1>Let’s make<br /><em>time for you.</em></h1><p>Ein schöner Moment beginnt manchmal mit einem Gespräch. Teile deine Frage mit uns – in dieser Demo bleibt sie ganz bei dir.</p><a className="text-link" href="#kontaktformular">Zum Kontaktformular </a></div>
-      <div className="contact-hero-art"><Visual variant="contact-art contact-hero-visual" label="Abstrakte VELORA Bildkomposition als gekennzeichneter Platzhalter" /><span className="contact-art-caption">VELORA · EIN MOMENT FÜR DICH</span></div>
+      <div className="contact-hero-art"><Visual variant="contact-art contact-hero-visual" asset="location" label="Illustrative Aufnahme eines Studio-Interieurs als visuelles Standortkonzept in Köln" /><span className="contact-art-caption">KÖLN · VISUELLES STANDORTKONZEPT</span></div>
     </section>
     <section className="contact-main section-pad" id="kontaktformular">
       <div className="contact-form-column">
