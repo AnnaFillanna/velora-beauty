@@ -7,7 +7,7 @@ const imageFiles = import.meta.glob<string>('../assets/images/*.{webp,jpg,jpeg,p
 
 export const editorialImages = {
   treatments: 'treatments-selected.jpg',
-  hero: 'hero-beauty.jpg',
+  hero: 'hero-selected.jpg',
   lashes: 'lashes-brows-selected.jpg',
   nails: 'nails.jpg',
   facial: 'face-skin-selected.jpg',

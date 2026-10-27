@@ -146,7 +146,7 @@ function CinematicHero() {
     </motion.div>
     <motion.div className="hero-art-wrap" style={{ scale: sceneScale, y: sceneY }} onPointerMove={moveWithPointer} onPointerLeave={resetPointer}>
       <motion.div className="hero-art-depth" style={{ x: pointerX, y: pointerY }}>
-        <Visual variant="hero-art" asset="hero" label="Abstrakte, skulpturale VELORA Bildwelt in warmen Naturtönen" loading="eager" />
+        <Visual variant="hero-art" asset="hero" label="Beauty-Porträt mit ausdrucksstarkem Augen-Make-up" loading="eager" />
       </motion.div>
     </motion.div>
     <a href="#intro" className="scroll-cue" aria-label="Weiter zum Inhalt"><span>Scrollen</span></a>
