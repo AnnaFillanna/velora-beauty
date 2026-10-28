@@ -179,6 +179,29 @@ function ProductCard({ product, index }: { product: typeof skinProducts[number];
   </Link>
 }
 
+function RitualFinder() {
+  const [selected, setSelected] = useState(0)
+  const ritual = treatments[selected]
+  return <section className="ritual-finder section-pad" aria-labelledby="ritual-title">
+    <Reveal className="ritual-intro"><p className="eyebrow">WORAUF HAST DU HEUTE LUST?</p><h2 id="ritual-title">Ein kleines Ritual.<br /><em>Ein neues Gefühl.</em></h2><p>Wähle deinen Fokus und entdecke deinen nächsten Beauty-Moment.</p>
+      <div className="ritual-options" role="group" aria-label="Beauty-Fokus auswählen">{treatments.map((item, index) => <button key={item.path} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}><span>0{index + 1}</span>{item.title}</button>)}</div>
+    </Reveal>
+    <div className="ritual-feature">
+      <img key={ritual.image} src={getEditorialImage(ritual.image)} alt={ritual.title + ' – Beauty-Inspiration'} loading="lazy" />
+      <div className="ritual-caption" aria-live="polite"><p className="eyebrow">DEIN FOKUS · {ritual.index}</p><h3>{ritual.subtitle}</h3><p>{ritual.description}</p><Link className="button button-dark" to={ritual.path}>Treatment entdecken</Link></div>
+    </div>
+  </section>
+}
+
+function BeautyJournal() {
+  const moments: { asset: EditorialImage; title: string; note: string; path: string }[] = [
+    { asset: 'studioDetails', title: 'Die kleinen Dinge.', note: 'TEXTUREN · LICHT · RUHE', path: '/about' },
+    { asset: 'treatments', title: 'Zeit, die dir gehört.', note: 'CARE · DEIN PERSÖNLICHES RITUAL', path: '/treatments' },
+    { asset: 'studioReception', title: 'Ankommen. Durchatmen.', note: 'DAS VELORA STUDIOKONZEPT', path: '/about' },
+  ]
+  return <section className="beauty-journal section-pad" aria-labelledby="journal-title"><Reveal><p className="eyebrow">THE VELORA EDIT</p><h2 id="journal-title">Schönheit steckt<br /><em>in den Details.</em></h2></Reveal><div className="journal-grid">{moments.map((moment, index) => <Reveal key={moment.title} delay={index * .08}><Link to={moment.path} className="journal-card"><div className="journal-image"><img src={getEditorialImage(moment.asset)} alt={moment.title} loading="lazy" /></div><p className="eyebrow">{moment.note}</p><h3>{moment.title}</h3><span className="text-link">Mehr entdecken</span></Link></Reveal>)}</div></section>
+}
+
 function Home() {
   return <>
     <main>
@@ -188,9 +211,13 @@ function Home() {
 
       <section className="treatments-section section-pad"><Reveal><SectionHeading eyebrow="UNSERE TREATMENTS · 02" title={<>Zeit für das,<br /><em>was dir guttut.</em></>} text="Entdecke unsere Beauty-Welt – sorgfältig zusammengestellt und auf dich abgestimmt." /></Reveal><TreatmentGrid compact /><div className="center-action"><Link to="/treatments" className="button button-outline">Alle Treatments entdecken </Link></div></section>
 
-      <section className="experience-section"><Visual variant="experience-art" label="Abstrakte, warme Bildkomposition als Platzhalter" /><Reveal className="experience-copy"><p className="eyebrow">DAS VELORA GEFÜHL · 03</p><h2>Mehr als ein<br /><em>Termin.</em></h2><p>Ein Besuch bei uns ist eine Einladung, kurz innezuhalten. Mit Ruhe, aufmerksamer Betreuung und einem Blick für die Details gestalten wir dein persönliches Beauty-Ritual.</p><Link to="/about" className="text-link">Unser Anspruch </Link></Reveal><span className="experience-vertical">BEAUTY IN EVERY DETAIL.</span></section>
+      <RitualFinder />
+
+      <section className="experience-section"><Visual variant="experience-art" asset="studio" label="Warme Studio-Atmosphäre des VELORA Demokonzepts" /><Reveal className="experience-copy"><p className="eyebrow">DAS VELORA GEFÜHL · 03</p><h2>Mehr als ein<br /><em>Termin.</em></h2><p>Ein Besuch bei uns ist eine Einladung, kurz innezuhalten. Mit Ruhe, aufmerksamer Betreuung und einem Blick für die Details gestalten wir dein persönliches Beauty-Ritual.</p><Link to="/about" className="text-link">Unser Anspruch </Link></Reveal><span className="experience-vertical">BEAUTY IN EVERY DETAIL.</span></section>
 
       <section className="collection-section section-pad"><div className="collection-header"><Reveal><p className="eyebrow">VELORA SKIN COLLECTION · 04</p><h2>Pflege, <em>die bleibt.</em></h2></Reveal><Reveal><p className="collection-copy">Eine kuratierte Welt aus Pflege-Essentials – mit Liebe zu Form, Textur und den kleinen Momenten deiner Routine.</p><Link to="/collection" className="text-link">Kollektion entdecken </Link></Reveal></div><ProductRow /><div className="collection-demo-note">Fiktive Produktwelt · Demo-Preise · Keine echten Bestellungen</div></section>
+
+      <BeautyJournal />
 
       <section className="book-cta"><div className="cta-ornament">V</div><Reveal><p className="eyebrow">EIN MOMENT NUR FÜR DICH</p><h2>Dein Moment.<br /><em>Deine Schönheit.</em></h2><Link to="/book" className="button button-light">Jetzt Termin entdecken </Link></Reveal><span className="cta-foot">VELORA · BEAUTY HOUSE KÖLN</span></section>
     </main>

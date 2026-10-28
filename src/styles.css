@@ -1028,3 +1028,37 @@ h1, h2, h3, em { font-style: normal; }
 
 .hero-art.has-image .art-image { inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 38%; transform: none; }
 .hero-art.has-image .art-caption { display: none; }
+
+/* Editorial moments and an interactive treatment discovery. */
+.ritual-finder { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 100px); align-items: center; background: #eee0d9; }
+.ritual-intro > p:last-of-type { max-width: 38ch; line-height: 1.8; }
+.ritual-options { display: grid; margin-top: 32px; }
+.ritual-options button { display: flex; align-items: center; gap: 22px; padding: 20px 8px; text-align: left; border: 0; border-bottom: 1px solid #703d4833; background: transparent; cursor: pointer; transition: background .25s, padding .25s; }
+.ritual-options button span { font-size: 11px; letter-spacing: .12em; color: #703d48; }
+.ritual-options button[aria-pressed="true"] { background: #fffaf080; padding-left: 22px; color: #703d48; font-weight: 600; }
+.ritual-feature { position: relative; min-width: 0; }
+.ritual-feature > img { display: block; width: 100%; height: 420px; object-fit: cover; object-position: center 35%; border-radius: 150px 150px 0 0; }
+.ritual-caption { position: relative; margin: -44px 24px 0; padding: 28px; background: #fffaf5; box-shadow: 0 14px 42px #703d4810; }
+.ritual-caption h3 { font-size: clamp(22px, 2.4vw, 32px); margin: 12px 0; }
+.ritual-caption > p:not(.eyebrow) { font-size: 14px; line-height: 1.8; }
+.ritual-caption .button { margin-top: 14px; }
+.experience-art.has-image .art-image { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.journal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+.journal-grid > :nth-child(2) { padding-top: 64px; }
+.journal-image { overflow: hidden; background: #eadbd2; aspect-ratio: 4 / 5; }
+.journal-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.journal-card:hover img, .journal-card:focus-visible img { transform: scale(1.035); }
+.journal-card .eyebrow { margin-top: 22px; }
+.journal-card h3 { font-size: clamp(21px, 2vw, 30px); font-weight: 400; margin: 12px 0 20px; }
+@media (max-width: 760px) {
+  .ritual-finder { grid-template-columns: 1fr; }
+  .ritual-options { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ritual-options button { font-size: 13px; gap: 8px; padding: 15px 8px; }
+  .ritual-options button[aria-pressed="true"] { padding-left: 8px; }
+  .ritual-feature > img { height: 360px; }
+  .ritual-caption { margin: -32px 12px 0; padding: 22px; }
+  .journal-grid { grid-template-columns: 1fr; gap: 40px; }
+  .journal-grid > :nth-child(2) { padding-top: 0; }
+  .journal-image { aspect-ratio: 5 / 4; }
+}
+@media (prefers-reduced-motion: reduce) { .journal-image img, .ritual-options button { transition: none; } }
