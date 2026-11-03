@@ -6,7 +6,7 @@
 >
 > **Live-Demo:** [annafillanna.github.io/velora-beauty](https://annafillanna.github.io/velora-beauty/)
 
-VELORA verbindet ein ruhiges, editorial geprägtes Markenerlebnis mit funktionierenden Demo-Interaktionen. Das Projekt demonstriert Konzeption und Umsetzung einer responsiven Beauty-Website – von Treatments und Preisen bis zur Buchungsstrecke und einem kleinen Produktkatalog.
+Mit VELORA zeige ich eine Beauty-Website mit mehr als statischen Seiten: Besucher können eine Behandlung auswählen, eine Demo-Terminbuchung durchlaufen und Produkte in einen lokalen Warenkorb legen. Mein Fokus liegt auf responsiven Oberflächen, nachvollziehbaren Zustandsänderungen und verständlichen Formularen.
 
 **Wichtig:** VELORA ist ein Konzeptprojekt, kein realer Salon. Es werden keine echten Termine gebucht, Nachrichten versendet, Bestellungen ausgelöst oder Formulardaten dauerhaft gespeichert.
 
@@ -42,6 +42,28 @@ VELORA verbindet ein ruhiges, editorial geprägtes Markenerlebnis mit funktionie
 - CSS mit Custom Properties und responsiven Layouts
 - ESLint
 
+## Technische Entscheidungen
+
+| Aufgabe | Umsetzung | Code |
+| --- | --- | --- |
+| Buchung in fünf Schritten | Behandlung, passende Expertin, Datum und Uhrzeit werden nacheinander ausgewählt. Wenn sich die Behandlung ändert, werden abhängige Auswahlen zurückgesetzt. | [BookingWizard.tsx](src/BookingWizard.tsx) |
+| Demo-Verfügbarkeit | Die angebotenen Zeiten berücksichtigen Arbeitstage, Behandlungslänge, Schließzeit und bereits vergangene Uhrzeiten. Vor der Bestätigung wird die Auswahl erneut geprüft. | [Buchungslogik](src/BookingWizard.tsx), [Expertinnen und Zeitplan](src/data/booking.ts) |
+| Gemeinsamer Warenkorb | React Context verbindet Produktseite, Warenkorb-Button und Drawer. Artikelanzahl und Zwischensumme werden aus den Positionen abgeleitet. Für diesen Umfang ist kein zusätzlicher State-Manager nötig. | [CartContext.tsx](src/CartContext.tsx), [cartStore.ts](src/cartStore.ts) |
+| Tastatur und Formulare | Der Warenkorb begrenzt den Tab-Fokus, lässt sich mit Escape schließen und gibt den Fokus zurück. Formularfehler sind den Eingabefeldern zugeordnet. | [CartContext.tsx](src/CartContext.tsx), [Kontaktformular](src/App.tsx) |
+| Bilder und Produktdarstellung | Bildzuordnungen liegen zentral. Fehlt ein Bild, bleibt eine gestaltete Ersatzdarstellung sichtbar. Produktdarstellungen sind von Produktdaten getrennt. | [visualAssets.ts](src/data/visualAssets.ts), [ProductArtwork.tsx](src/ProductArtwork.tsx) |
+| Veröffentlichung | React Router verwendet den konfigurierten Basispfad. Seitentitel und Canonicals werden je Route aktualisiert; der Build erzeugt Sitemap und eine 404-Einstiegsdatei für GitHub Pages. | [main.tsx](src/main.tsx), [SEO.tsx](src/SEO.tsx), [generate-seo.mjs](scripts/generate-seo.mjs) |
+
+### Zum Ausprobieren
+
+1. Eine Behandlung öffnen und mit der Vorauswahl in die Terminbuchung wechseln.
+2. Behandlung oder Expertin ändern und beobachten, wie Datum und Uhrzeit zurückgesetzt werden.
+3. Die Buchung zunächst mit leeren Pflichtfeldern abschicken und anschließend die lokale Demo-Bestätigung ansehen.
+4. Ein Produkt in den Warenkorb legen, die Menge ändern und den Drawer mit Escape schließen. Nach einem Reload ist der Warenkorb wieder leer.
+
+### Abgrenzung
+
+React, React Router, Motion und Lucide liefern die technische Grundlage. Die projektspezifischen Abläufe sind in den oben verlinkten Dateien nachvollziehbar. Der Buchungskalender simuliert Verfügbarkeiten; er reserviert keine Termine und synchronisiert sich nicht mit anderen Besuchern. Für einen echten Salon wären ein Backend, serverseitige Prüfung und eine verbindliche Reservierung nötig.
+
 ## Lokal starten
 
 Voraussetzung: eine aktuelle Node.js-LTS-Version.
@@ -49,7 +71,7 @@ Voraussetzung: eine aktuelle Node.js-LTS-Version.
 ```bash
 git clone https://github.com/AnnaFillanna/velora-beauty.git
 cd velora-beauty
-npm install
+npm ci
 npm run dev
 ```
 
@@ -60,10 +82,12 @@ Vite zeigt anschließend die lokale Entwicklungsadresse im Terminal an.
 ```bash
 npm run lint
 npm run build
+npx playwright install chromium
+npm test
 npm run preview
 ```
 
-`npm run build` führt zuerst den TypeScript-Projektbuild und anschließend den Vite-Production-Build aus. Der abschließende SEO-Schritt erstellt `sitemap.xml`, sobald eine öffentliche URL konfiguriert ist. Im Projekt gibt es derzeit kein separates automatisiertes Testskript.
+`npm run build` führt zuerst den TypeScript-Projektbuild und anschließend den Vite-Production-Build aus. Der abschließende SEO-Schritt erstellt `sitemap.xml`, sobald eine öffentliche URL konfiguriert ist. Die Playwright-Tests prüfen Buchungsvalidierung, abgelaufene Zeitfenster, Warenkorb und Kontaktformular auf Desktop und Smartphone. Der Testlauf startet seinen eigenen Vite-Server. In GitHub Actions laufen diese Prüfungen vor dem Deployment.
 
 ## Deployment-URL für SEO konfigurieren
 
@@ -83,9 +107,9 @@ Ohne `VITE_SITE_URL` wird absichtlich keine Sitemap mit einer falschen Domain er
 
 ## Bildmaterial
 
-Es sind derzeit illustrative Team-Porträts im SVG-Format vorhanden. Fehlende Studio-, Treatment- und Produktfotos werden durch gestaltete Platzhalterflächen ersetzt, sodass keine kaputten Bildverweise entstehen.
+Studio-, Treatment- und Hero-Motive liegen als JPG-Dateien unter `src/assets/images/`, die drei Demo-Teamporträts unter `src/assets/team/`. Welche Motive verwendet werden, steht in [visualAssets.ts](src/data/visualAssets.ts). Für nicht vorhandene Produktbilder verwendet die Anwendung gestaltete Ersatzdarstellungen.
 
-Empfohlene Dateinamen, Formate und Bildkompositionen stehen im [Bildleitfaden](./IMAGE_GUIDE.md). Finale WebP-Dateien gehören nach `src/assets/images/`.
+Der [Bildleitfaden](./IMAGE_GUIDE.md) beschreibt die Zuordnung und Anforderungen an Ersatzbilder. Die dargestellten Teamprofile gehören zum fiktiven Konzept; sie sind kein Nachweis realer Mitarbeiterinnen.
 
 ## Demo- und Datenschutz-Hinweise
 

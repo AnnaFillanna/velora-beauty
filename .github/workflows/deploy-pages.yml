@@ -29,6 +29,10 @@ jobs:
         run: npm ci
       - name: Check lint
         run: npm run lint
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+      - name: Test user flows
+        run: npm test
       - name: Build site
         run: npm run build
         env:

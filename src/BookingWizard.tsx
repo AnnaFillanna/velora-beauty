@@ -244,7 +244,22 @@ function BookingWizard() {
 
   function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (step !== 4 || !validateCustomer(booking.customer) || !booking.date || !booking.time) return
+    if (step !== 4) return
+    const customerErrors = validateCustomer(booking.customer)
+    if (Object.keys(customerErrors).length > 0) {
+      setStep(3)
+      setErrors(customerErrors)
+      return
+    }
+    // Recheck at confirmation: a slot can expire while the review stays open.
+    const currentDateKey = toDateKey(new Date())
+    const currentTimes = getDemoTimes(booking.date, treatment?.durationMinutes ?? 0, availabilityExperts)
+    if (!treatment || !booking.date || booking.date < currentDateKey || booking.date > toDateKey(dateAtOffset(demoAvailability.daysAhead)) || !currentTimes.includes(booking.time)) {
+      updateBooking({ date: '', time: '' })
+      setStep(2)
+      setErrors({ date: 'Bitte wähle einen aktuell verfügbaren Demo-Termin aus.' })
+      return
+    }
     setSubmitted(true)
     setBooking((current) => ({ ...current, customer: emptyCustomer }))
   }
